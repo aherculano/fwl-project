@@ -1,1 +1,1 @@
-from .model import zone, environment
+from .model import zone, environment, firewall
