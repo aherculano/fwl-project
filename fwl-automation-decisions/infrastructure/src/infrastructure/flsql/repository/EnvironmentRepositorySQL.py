@@ -32,5 +32,5 @@ class EnvironmentRepositorySQL(EnvironmentRepository):
         return Environment(EnvironmentName(schema.name))
 
     def _domain_to_schema(self, domain: Environment) -> EnvironmentModel:
-        env_name: str = domain.environment_name.environment_name
+        env_name: str = domain.environment_name.value
         return EnvironmentModel(env_name)

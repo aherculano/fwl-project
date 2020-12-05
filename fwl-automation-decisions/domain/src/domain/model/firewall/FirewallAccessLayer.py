@@ -8,7 +8,7 @@ class FirewallAccessLayer(object):
         return self._value
 
     @value.setter
-    def _value(self, value: str):
+    def value(self, value: str):
         self._value = value
 
     def __eq__(self, other) -> bool:

@@ -9,4 +9,4 @@ class EnvironmentMapperImpl(EnvironmentMapper):
         return Environment(EnvironmentName(dto.environment_name))
 
     def domain2dto(self, dom: Environment) -> EnvironmentDTOImpl:
-        return EnvironmentDTOImpl(dom.environment_name.environment_name)
+        return EnvironmentDTOImpl(dom.environment_name.value)
