@@ -1,7 +1,7 @@
-class ZoneName(object):
+class FirewallAccessLayer(object):
 
-    def __init__(self, value: str):
-        self.value = value
+    def __init__(self, access_layer: str):
+        self.value = access_layer
 
     @property
     def value(self):
@@ -9,9 +9,9 @@ class ZoneName(object):
 
     @value.setter
     def _value(self, value: str):
-        self._value = value.strip().upper()
+        self._value = value
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, ZoneName):
+        if isinstance(other, FirewallAccessLayer):
             return self.value.__eq__(other.value)
         return False

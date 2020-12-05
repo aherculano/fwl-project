@@ -1,4 +1,4 @@
-class ZoneName(object):
+class FirewallName(object):
 
     def __init__(self, value: str):
         self.value = value
@@ -12,6 +12,6 @@ class ZoneName(object):
         self._value = value.strip().upper()
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, ZoneName):
+        if isinstance(other, FirewallName):
             return self.value.__eq__(other.value)
         return False

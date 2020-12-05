@@ -24,6 +24,6 @@ class Zone(object):
         self._environment = value
 
     def __eq__(self, other) -> bool:
-        if type(other) is Zone:
+        if isinstance(other, Zone):
             return self.zone_name.__eq__(other.zone_name)
         return False

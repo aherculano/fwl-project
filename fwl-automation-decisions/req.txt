@@ -1,0 +1,8 @@
+flask
+flask-sqlalchemy
+flask-migrate
+flask-restx
+python-dotenv
+./domain
+./application
+./infrastructure

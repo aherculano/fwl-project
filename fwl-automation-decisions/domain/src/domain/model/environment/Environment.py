@@ -15,7 +15,6 @@ class Environment(object):
         self._environment_name = value
 
     def __eq__(self, o: object) -> bool:
-        if type(o) is Environment:
-            o: Environment
+        if isinstance(o, Environment):
             return o.environment_name.__eq__(self.environment_name)
         return False
