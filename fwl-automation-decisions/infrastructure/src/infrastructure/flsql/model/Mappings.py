@@ -26,5 +26,9 @@ def flask_sqlalchemy_mappings(db: SQLAlchemy):
                                 db.Column('description', db.String(128)))
 
     db.mapper(EnvironmentModel, environment_mapping)
-    db.mapper(ZoneModel, zone_mapping)
+    db.mapper(ZoneModel, zone_mapping, properties={
+        "environment": db.relationship(EnvironmentModel,
+                                            primaryjoin=zone_mapping.c.env_id == environment_mapping.c.id,
+                                            backref='zone')
+    })
     db.mapper(FirewallModel, firewall_mapping)
