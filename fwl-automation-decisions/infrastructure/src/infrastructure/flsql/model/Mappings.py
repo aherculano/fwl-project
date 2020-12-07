@@ -23,7 +23,7 @@ def flask_sqlalchemy_mappings(db: SQLAlchemy):
                                 db.Column('id', db.Integer, primary_key=True, autoincrement=True),
                                 db.Column('uuid', db.String(128), unique=True),
                                 db.Column('name', db.String(128)),
-                                db.Column('description', db.String(128)))
+                                db.Column('access_layer', db.String(128)))
 
     db.mapper(EnvironmentModel, environment_mapping)
     db.mapper(ZoneModel, zone_mapping, properties={

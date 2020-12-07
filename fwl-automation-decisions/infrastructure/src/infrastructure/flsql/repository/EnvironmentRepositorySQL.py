@@ -9,12 +9,12 @@ class EnvironmentRepositorySQL(EnvironmentRepository):
         self.base_repo = base_repo
 
     def add(self, o: Environment) -> Environment:
-        model = self._domain_to_schema(o)
-        self.base_repo.db.session.add(model)
-        self.base_repo.db.session.commit()
+        schema = self._domain_to_schema(o)
+        self.base_repo.add(schema)
+        return self._schema_to_domain(schema)
 
     def list(self) -> [Environment]:
-        model_list: [EnvironmentModel] = self.base_repo.db.session.query(EnvironmentModel).all()
+        model_list: [EnvironmentModel] = self.base_repo.list(EnvironmentModel)
         if model_list.__len__() > 0:
             ret_list = []
             for model in model_list:
@@ -23,10 +23,11 @@ class EnvironmentRepositorySQL(EnvironmentRepository):
         return []
 
     def get(self, o: Environment) -> Environment:
-        pass
+        return self.get_by_id(o.environment_name)
 
     def get_by_id(self, id: EnvironmentName) -> Environment:
-        pass
+        schema = self.base_repo.get_by_filter(EnvironmentModel, EnvironmentModel.name, id.value)
+        return self._schema_to_domain(schema)
 
     def _schema_to_domain(self, schema: EnvironmentModel) -> Environment:
         return Environment(EnvironmentName(schema.name))

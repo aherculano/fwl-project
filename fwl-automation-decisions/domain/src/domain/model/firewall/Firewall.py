@@ -1,10 +1,11 @@
 from .FirewallName import FirewallName
 from .FirewallUUID import FirewallUUID
+from .FirewallAccessLayer import FirewallAccessLayer
 
 
 class Firewall(object):
 
-    def __init__(self, uuid: FirewallUUID, name: FirewallName, access_layer: str):
+    def __init__(self, uuid: FirewallUUID, name: FirewallName, access_layer: FirewallAccessLayer):
         self.uuid = uuid
         self.name = name
         self.access_layer = access_layer
@@ -22,7 +23,7 @@ class Firewall(object):
         return self._access_layer
 
     @uuid.setter
-    def uuid(self, value: str):
+    def uuid(self, value: FirewallUUID):
         self._uuid = value
 
     @name.setter
@@ -30,7 +31,7 @@ class Firewall(object):
         self._name = value
 
     @access_layer.setter
-    def access_layer(self, value: str):
+    def access_layer(self, value: FirewallAccessLayer):
         self._access_layer = value
 
     def __eq__(self, other: object):

@@ -2,7 +2,6 @@ from domain.model.environment import EnvironmentName
 from domain.model.zone import ZoneRepository, ZoneName, Zone
 from ..SQLAlchemyBase import SQLAlchemyBase
 from ..model.ZoneModel import ZoneModel
-from ..model.EnvironmentModel import EnvironmentModel
 
 
 class ZoneRepositorySQL(ZoneRepository):
@@ -11,26 +10,23 @@ class ZoneRepositorySQL(ZoneRepository):
         self.base_repo = base_repo
 
     def add(self, o: Zone) -> Zone:
-        model = self._domain_to_schema(o)
-        env = self.base_repo.db.session.query(EnvironmentModel).filter(
-            EnvironmentModel.name == o.environment.value).first()
-        model.env_id = env.id
-        self.base_repo.db.session.add(model)
-        self.base_repo.db.session.commit()
-        return o
+        schema = self._domain_to_schema(o)
+        self.base_repo.add(schema)
+        return self._schema_to_domain(schema)
 
     def list(self) -> [Zone]:
-        schema_list = self.base_repo.db.session.query(ZoneModel).all()
+        schema_list = self.base_repo.list(ZoneModel)
         ret_list: [Zone] = []
         for schema in schema_list:
             ret_list.append(self._schema_to_domain(schema))
         return ret_list
 
     def get(self, o: Zone) -> Zone:
-        pass
+        return self.get_by_id(o.zone_name)
 
     def get_by_id(self, id: ZoneName) -> Zone:
-        pass
+        schema = self.base_repo.get_by_filter(ZoneModel, ZoneModel.name, id.value)
+        return self._schema_to_domain(schema)
 
     def _domain_to_schema(self, domain: Zone) -> ZoneModel:
         return ZoneModel(domain.zone_name.value, 0)
