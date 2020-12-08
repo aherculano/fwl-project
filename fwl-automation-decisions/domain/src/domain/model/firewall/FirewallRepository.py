@@ -22,3 +22,7 @@ class FirewallRepository(BaseRepository, ABC):
     @abstractmethod
     def get_by_id(self, id: FirewallUUID) -> Firewall:
         raise NotImplementedError
+
+    @abstractmethod
+    def exists(self, id: FirewallUUID) -> bool:
+        raise NotImplementedError

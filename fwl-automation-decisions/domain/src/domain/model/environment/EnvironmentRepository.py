@@ -21,3 +21,7 @@ class EnvironmentRepository(BaseRepository, ABC):
     @abstractmethod
     def get_by_id(self, id: EnvironmentName) -> Environment:
         raise NotImplementedError
+
+    @abstractmethod
+    def exists(self, id: EnvironmentName) -> bool:
+        raise NotImplementedError

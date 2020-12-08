@@ -1,27 +1,28 @@
 from abc import ABC, abstractmethod
-from .Zone import Zone
-from .ZoneName import ZoneName
+
 from ...BaseRepository import BaseRepository
+from .ZoneConnection import ZoneConnection
+from .ZonePair import ZonePair
 
 
 class ZoneRepository(BaseRepository, ABC):
 
     @abstractmethod
-    def add(self, o: Zone) -> Zone:
+    def add(self, o: ZoneConnection) -> ZoneConnection:
         raise NotImplementedError
 
     @abstractmethod
-    def list(self) -> [Zone]:
+    def list(self) -> [ZoneConnection]:
         raise NotImplementedError
 
     @abstractmethod
-    def get(self, o: Zone) -> Zone:
+    def get(self, o: ZoneConnection) -> ZoneConnection:
         raise NotImplementedError
 
     @abstractmethod
-    def get_by_id(self, id: ZoneName) -> Zone:
+    def get_by_id(self, id: ZonePair) -> ZoneConnection:
         raise NotImplementedError
 
     @abstractmethod
-    def exists(self, id: ZoneName) -> bool:
+    def exists(self, id: ZonePair) -> bool:
         raise NotImplementedError
