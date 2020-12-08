@@ -1,13 +1,15 @@
 from .ZonePair import ZonePair
 from .Criticality import Criticality
 from .AllowedPort import AllowedPort
+from ..firewall.FirewallUUID import FirewallUUID
 
 
 class ZoneConnection(object):
 
-    def __init__(self, zone_pair: ZonePair, criticality: Criticality, allowed_ports_list: [AllowedPort] = []):
+    def __init__(self, zone_pair: ZonePair, criticality: Criticality, firewall_uuid: FirewallUUID, allowed_ports_list: [AllowedPort] = []):
         self.zone_pair = zone_pair
         self.criticality = criticality
+        self.firewall_uuid = firewall_uuid
         self.allowed_ports_list = allowed_ports_list
 
     @property
@@ -25,6 +27,14 @@ class ZoneConnection(object):
     @criticality.setter
     def criticality(self, value: Criticality):
         self._criticality = value
+
+    @property
+    def firewall_uuid(self):
+        return self._firewall_uuid
+
+    @firewall_uuid.setter
+    def firewall_uuid(self, value: FirewallUUID):
+        self._firewall_uuid = value
 
     @property
     def allowed_ports_list(self):
