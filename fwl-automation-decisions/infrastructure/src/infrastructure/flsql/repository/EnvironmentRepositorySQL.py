@@ -29,6 +29,12 @@ class EnvironmentRepositorySQL(EnvironmentRepository):
         schema = self.base_repo.get_by_filter(EnvironmentModel, EnvironmentModel.name, id.value)
         return self._schema_to_domain(schema)
 
+    def exists(self, id: EnvironmentName) -> bool:
+        dom = self.get_by_id(id)
+        if dom:
+            return True
+        return False
+
     def _schema_to_domain(self, schema: EnvironmentModel) -> Environment:
         return Environment(EnvironmentName(schema.name))
 

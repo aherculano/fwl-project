@@ -27,6 +27,12 @@ class FirewallRepositorySQL(FirewallRepository):
         schema = self.base_repo.get_by_filter(FirewallModel, FirewallModel.uuid, id.value)
         return self._schema_to_domain(schema)
 
+    def exists(self, id: FirewallUUID) -> bool:
+        dom = self.get_by_id(id)
+        if dom:
+            return True
+        return False
+
     def _schema_to_domain(self, schema: FirewallModel) -> Firewall:
         return Firewall(FirewallUUID(schema.uuid), FirewallName(schema.name), FirewallAccessLayer(schema.access_layer))
 

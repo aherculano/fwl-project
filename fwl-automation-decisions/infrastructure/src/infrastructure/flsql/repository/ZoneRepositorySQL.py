@@ -28,6 +28,12 @@ class ZoneRepositorySQL(ZoneRepository):
         schema = self.base_repo.get_by_filter(ZoneModel, ZoneModel.name, id.value)
         return self._schema_to_domain(schema)
 
+    def exists(self, id: ZoneName) -> bool:
+        dom = self.get_by_id(id)
+        if dom:
+            return True
+        return False
+
     def _domain_to_schema(self, domain: Zone) -> ZoneModel:
         return ZoneModel(domain.zone_name.value, 0)
 
