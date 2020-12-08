@@ -3,6 +3,8 @@ flask-sqlalchemy
 flask-migrate
 flask-restx
 python-dotenv
+gunicorn
+flask-injector
 ./domain
 ./application
 ./infrastructure
