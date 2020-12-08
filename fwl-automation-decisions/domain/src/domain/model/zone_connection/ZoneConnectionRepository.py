@@ -5,7 +5,7 @@ from .ZoneConnection import ZoneConnection
 from .ZonePair import ZonePair
 
 
-class ZoneRepository(BaseRepository, ABC):
+class ZoneConnectionRepository(BaseRepository, ABC):
 
     @abstractmethod
     def add(self, o: ZoneConnection) -> ZoneConnection:
